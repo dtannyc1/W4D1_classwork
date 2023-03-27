@@ -2,6 +2,7 @@ require_relative 'tic_tac_toe_node'
 
 class SuperComputerPlayer < ComputerPlayer
   def move(game, mark)
+
     node = TicTacToeNode.new(game.board, mark)
     node.children.each do |child|
       if child.winning_node?(mark)
@@ -13,7 +14,7 @@ class SuperComputerPlayer < ComputerPlayer
         return child.prev_move_pos
       end
     end
-    raise "There are no losing nodes."
+    raise "There are no non losing nodes."
   end
 end
 

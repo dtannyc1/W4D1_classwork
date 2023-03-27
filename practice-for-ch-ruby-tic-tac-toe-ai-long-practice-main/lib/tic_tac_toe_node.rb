@@ -17,7 +17,7 @@ class TicTacToeNode
         all_children = self.children
 
         return true if next_mover_mark == evaluator &&
-                       all_children.all? do |child|
+                       all_children.any? do |child|
                             child.losing_node?(evaluator)
                        end
         return true if next_mover_mark != evaluator &&
@@ -35,7 +35,7 @@ class TicTacToeNode
         all_children = self.children
 
         return true if next_mover_mark == evaluator &&
-                      all_children.any? do |child|
+                      all_children.all? do |child|
                             child.winning_node?(evaluator)
                       end
         return true if next_mover_mark != evaluator &&
