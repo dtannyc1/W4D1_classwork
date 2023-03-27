@@ -3,6 +3,10 @@
 class Board
   attr_reader :rows
 
+    # def inspect
+    #     @rows.inspect
+    # end
+
   def self.blank_grid
     Array.new(3) { Array.new(3) }
   end
