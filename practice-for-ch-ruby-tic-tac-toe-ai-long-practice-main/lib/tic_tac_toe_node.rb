@@ -13,24 +13,23 @@ class TicTacToeNode
     def losing_node?(evaluator)
         return true if @board.over? &&
                      ((@board.winner != evaluator) && !@board.winner.nil?)
-        return false if @board.over? && @board.winner == evaluator
+        # return false if @board.over? && @board.winner == evaluator
         all_children = self.children
 
         return true if next_mover_mark == evaluator &&
-                       all_children.any? do |child|
+                       all_children.all? do |child|
                             child.losing_node?(evaluator)
                        end
         return true if next_mover_mark != evaluator &&
-                        all_children.any? do |child|
-                            child.losing_node?(evaluator)
-                        end
+                    all_children.any? { |child| child.losing_node?(evaluator)}
+
         false
     end
 
     def winning_node?(evaluator)
         # @board.over? && @board.winner == evaluator
         return true if @board.over? &&
-                      (@board.winner == evaluator) 
+                      (@board.winner == evaluator)
         return false if @board.over? && @board.winner != evaluator && !board.winner.nil?
         all_children = self.children
 
